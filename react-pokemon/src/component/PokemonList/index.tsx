@@ -1,32 +1,58 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Container, Grid } from '@mui/material';
 import { CardPokemon } from '..';
 import { ListPokemon } from '../../interface';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 interface PokemonListProps {
   pokemons: ListPokemon[];
 }
 
 const PokemonList: React.FC<PokemonListProps> = ({ pokemons }: PokemonListProps) => {
-  const [searchTerm, setSearchTerm] = useState<string>('');
+  const validationSchema = Yup.object().shape({
+    searchTerm: Yup.string()
+      .matches(/^[^0-9]*$/, 'Search term should not contain numbers')
+      
+  });
+
+  const formik = useFormik({
+    initialValues: {
+      searchTerm: '',
+    },
+    validationSchema: validationSchema,
+    onSubmit: (values) => {
+    },
+  });
+
+  const { values, handleChange, handleSubmit, errors, touched } = formik;
 
   const filteredPokemons = pokemons.filter((p) =>
-    p.name.toLowerCase().includes(searchTerm.toLowerCase())
+    p.name.toLowerCase().includes(values.searchTerm.toLowerCase())
   );
 
   return (
     <Container>
-      
-      <input
-        type="text"
-        placeholder="Search Pokemon..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
+      <div className="flex justify-center items-center">
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Search Pokemon..."
+            name="searchTerm"
+            value={values.searchTerm}
+            onChange={handleChange}
+            className="p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 mb-5"
+          />
+          {touched.searchTerm && errors.searchTerm && (
+            <p className="text-red-500">{errors.searchTerm}</p>
+          )}
+        </form>
+      </div>
+
       <Grid container spacing={2}>
         {filteredPokemons.length > 0 ? (
           filteredPokemons.map((p) => (
-            <Grid item xs={4} key={p.name}>
+            <Grid item xs={6} key={p.name}>
               <CardPokemon pokemon={p} />
             </Grid>
           ))

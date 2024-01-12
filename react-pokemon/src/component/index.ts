@@ -1,5 +1,4 @@
 export { default as Navbar } from './Navbar'
-export { default as Search } from './Search'
 export { default as PokemonList } from './PokemonList'
 export { default as CardPokemon } from './CardPokemon'
 export { default as DetailPokemon } from './DetailPokemon'

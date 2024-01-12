@@ -13,16 +13,17 @@ const AvatarPokemon = ({ pokemon }: AvatarPokemonProps) => {
     return (
         <>
         <Typography 
-            variant="h3" 
+            variant="h4" 
             align="center" 
             fontWeight="bold" 
             textTransform="uppercase"
-            sx={{ mt: 2 }}
+            color="black"
+            sx={{ mt: 5 }}
             >
             Detail Pokemon
         </Typography>
 
-        <Card sx={{backgroundColor: pokemon.color, mt: 10}}>
+        <Card sx={{backgroundColor: pokemon.color, mt: 5}}>
             <CardMedia 
                 component="img"
                 image={pokemon.sprites.other["official-artwork"].front_default}
