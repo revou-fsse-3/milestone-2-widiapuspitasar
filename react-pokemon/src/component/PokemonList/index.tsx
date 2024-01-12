@@ -41,7 +41,7 @@ const PokemonList: React.FC<PokemonListProps> = ({ pokemons }: PokemonListProps)
             name="searchTerm"
             value={values.searchTerm}
             onChange={handleChange}
-            className="p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 mb-5"
+            className="p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 mb-5 bg-yellow-100 text-white"
           />
           {touched.searchTerm && errors.searchTerm && (
             <p className="text-red-500">{errors.searchTerm}</p>

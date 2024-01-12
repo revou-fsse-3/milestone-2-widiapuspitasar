@@ -15,8 +15,18 @@ const HomeContainer = () => {
   {hasMorePokemon ? (
     <Grid container justifyContent="flex-end" style={{ marginTop: '1rem', marginBottom:'1rem' }}>
       <Button
-        variant='contained'
+        // variant='contained'
         onClick={fetchNextPage}
+        sx={{
+          display: 'inline-block',
+          margin: '1rem 0 2rem',
+          backgroundColor: 'orange',
+          color: 'white',
+          '&:hover': {
+              backgroundColor: 'yellow',
+              color: 'black',
+          },
+      }}
       >
         NEXT
       </Button>
