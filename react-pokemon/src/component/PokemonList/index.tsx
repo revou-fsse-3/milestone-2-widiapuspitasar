@@ -21,7 +21,7 @@ const PokemonList: React.FC<PokemonListProps> = ({ pokemons }: PokemonListProps)
       searchTerm: '',
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
+    onSubmit: () => {
     },
   });
 
